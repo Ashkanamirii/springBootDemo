@@ -72,7 +72,7 @@ public class UserServiceTest {
                         "testCity", null, null), null, null, null);
         // mock data
         Mockito.when(userRepo.findByEmailAndPassword(users.getEmail(),users.getPassword())).thenReturn(users);
-
+        //Wrong password to throw exception(12345) -< instead of > --> (123456)
         Users u = userService.findUserByEmailAndPassword("test@gmail.com", "12345");
 
     }
