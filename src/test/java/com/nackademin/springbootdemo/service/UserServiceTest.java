@@ -1,11 +1,9 @@
-package com.nackademin.springbootdemo;
+package com.nackademin.springbootdemo.service;
 
 import com.nackademin.springbootdemo.model.Address;
 import com.nackademin.springbootdemo.model.Users;
 import com.nackademin.springbootdemo.repository.UserRepo;
-import com.nackademin.springbootdemo.service.UserService;
 import com.nackademin.springbootdemo.utils.UserException;
-import org.apache.catalina.User;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -42,9 +40,9 @@ public class UserServiceTest {
     @Test
     public void findUserByEmailAndPasswordTest() throws UserException {
         //creat an object of Users
-        Users users = new Users(1L, "test@gmail.com", "123456", "test", "testLast",
-                new Address(1L, "testStreet", "testZipcode",
-                        "testCity", null, null), null, null, null);
+        Users users = new Users(1L, "test@gmail.com", "123456", "test",
+                "testLast", new Address(1L, "testStreet", "testZipcode", "testCity",
+                        null, null), null, null, null);
         // mock data
         Mockito.when(userRepo.findByEmailAndPassword("test@gmail.com", "123456")).thenReturn(users);
 
@@ -67,9 +65,9 @@ public class UserServiceTest {
     @Test(expected = UserException.class)
     public void findUserByEmailAndPassword_GivenNullShouldThrowException() throws UserException {
         //create an object of Users
-        Users users = new Users(1L, "test@gmail.com", "123456", "test", "testLast",
-                new Address(1L, "testStreet", "testZipcode",
-                        "testCity", null, null), null, null, null);
+        Users users = new Users(1L, "test@gmail.com", "123456", "test",
+                "testLast", new Address(1L, "testStreet", "testZipcode", "testCity",
+                        null, null), null, null, null);
         // mock data
         Mockito.when(userRepo.findByEmailAndPassword(users.getEmail(),users.getPassword())).thenReturn(users);
         //Wrong password to throw exception(12345) -< instead of > --> (123456)
